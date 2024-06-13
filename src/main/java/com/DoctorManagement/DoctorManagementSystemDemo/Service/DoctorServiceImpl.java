@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.swing.text.html.Option;
+
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,8 +78,18 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public Boolean updateDoctor(Long id, DoctorModel doctorModel) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'updateDoctor'");
+        Optional<Doctor> optional = doctorRepository.findById(id);
+        if(optional.isPresent()){
+            Doctor doctor = optional.get();
+            doctor.setName(doctorModel.getName());
+            doctor.setSpecialization(doctorModel.getSpecialization());
+            doctor.setContactInfo(doctorModel.getContactInfo());
+
+            doctorRepository.save(doctor);
+            return true;
+        }
+        logger.error("Doctor not found by this Id {}", id);
+        throw new DoctorNotFoundException("Doctor not found by this Id - "+id);
     }
 
 }
