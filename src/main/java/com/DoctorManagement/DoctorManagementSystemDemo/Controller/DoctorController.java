@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 @RestController
@@ -42,5 +44,11 @@ public class DoctorController {
         Boolean response = doctorService.deleteDoctor(id);
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
+    @PutMapping("update/{id}")
+    public ResponseEntity<Boolean> updateDoctor(@PathVariable Long id, @RequestBody DoctorModel doctorModel){
+        Boolean response = doctorService.updateDoctor(id, doctorModel);
+        return new ResponseEntity<>(response,HttpStatus.OK);
+    }
+    
     
 }
