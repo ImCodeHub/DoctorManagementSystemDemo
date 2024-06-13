@@ -14,11 +14,13 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
-
+    
+    @Column(nullable = false)
     private String specialization;
     
-    @Column(name = "contact_info")
+    @Column(name = "contact_info", nullable = false)
     private String contactInfo;
 
     public Doctor(){
