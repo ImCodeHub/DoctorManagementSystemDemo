@@ -16,8 +16,19 @@ public class DoctorServiceImpl implements DoctorService{
 
     @Override
     public String addDoctor(DoctorModel doctorModel) {
-        Doctor doctor = new Doctor();
-        doctor.setName(doctorModel.getName());
+        if(doctorModel!=null){
+            Doctor doctor = new Doctor();
+            doctor.setName(doctorModel.getName());
+            doctor.setSpecialization(doctorModel.getSpecialization());
+            doctor.setContactInfo(doctorModel.getContactInfo());
+    
+            doctorRepository.save(doctor);
+
+            return "Doctor details has been saved.";
+        }else{
+            return "Doctor details empty please check the details again.";
+        }
+
     }
     
 }
