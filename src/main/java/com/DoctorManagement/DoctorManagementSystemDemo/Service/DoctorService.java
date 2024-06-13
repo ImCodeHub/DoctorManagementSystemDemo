@@ -8,4 +8,6 @@ import com.DoctorManagement.DoctorManagementSystemDemo.Model.DoctorModel;
 public interface DoctorService {
     public String addDoctor(DoctorModel doctor);
     public List<Doctor> getAllDoctor();
+    public Boolean deleteDoctor(Long id);
+    public Boolean updateDoctor(Long id,DoctorModel doctorModel);
 }
