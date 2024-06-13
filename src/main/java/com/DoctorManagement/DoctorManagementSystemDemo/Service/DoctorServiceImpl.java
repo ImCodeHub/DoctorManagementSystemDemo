@@ -1,12 +1,17 @@
 package com.DoctorManagement.DoctorManagementSystemDemo.Service;
 
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.DoctorManagement.DoctorManagementSystemDemo.Entity.Doctor;
 import com.DoctorManagement.DoctorManagementSystemDemo.Exception.GlobalException.DoctorDetailsEmptyException;
+import com.DoctorManagement.DoctorManagementSystemDemo.Exception.GlobalException.DoctorNotFoundException;
 // import com.DoctorManagement.DoctorManagementSystemDemo.Exception.GlobalException.DoctorNotFoundException;
 import com.DoctorManagement.DoctorManagementSystemDemo.Model.DoctorModel;
 import com.DoctorManagement.DoctorManagementSystemDemo.Repository.DoctorRepository;
@@ -35,6 +40,22 @@ public class DoctorServiceImpl implements DoctorService {
             return "Doctor details has been saved.";
         } else {
             throw new DoctorDetailsEmptyException("doctor details are not found in Object");
+        }
+    }
+
+
+    @Override
+    public List<Doctor> getAllDoctor() {
+        List<Doctor> list = new ArrayList<>();
+        
+        List<Doctor> doctors = doctorRepository.findAll();
+        if(doctors!=null){
+            for(Doctor doctor : doctors){
+                list.add(doctor);
+            }
+            return list;
+        }else{
+            throw new DoctorNotFoundException("Doctor list not found");
         }
     }
 
