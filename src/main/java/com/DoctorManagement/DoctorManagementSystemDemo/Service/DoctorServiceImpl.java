@@ -4,6 +4,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,26 @@ public class DoctorServiceImpl implements DoctorService {
         }else{
             throw new DoctorNotFoundException("Doctor list not found");
         }
+    }
+
+
+    @Override
+    public Boolean deleteDoctor(Long id) {
+        Optional<Doctor> optional = doctorRepository.findById(id);
+        if(optional.isPresent()){
+            doctorRepository.deleteById(id);
+            return true;
+        }else{
+            logger.error("doctor not found by this id {}",id);
+            throw new DoctorNotFoundException("Doctor not found by this Id - "+id);
+        }
+    }
+
+
+    @Override
+    public Boolean updateDoctor(Long id, DoctorModel doctorModel) {
+        
+        throw new UnsupportedOperationException("Unimplemented method 'updateDoctor'");
     }
 
 }
