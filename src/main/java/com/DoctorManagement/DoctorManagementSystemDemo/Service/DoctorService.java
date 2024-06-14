@@ -10,4 +10,5 @@ public interface DoctorService {
     public List<Doctor> getAllDoctor();
     public Boolean deleteDoctor(Long id);
     public Boolean updateDoctor(Long id,DoctorModel doctorModel);
+    public List<DoctorModel> findDoctorById(Long id);
 }
