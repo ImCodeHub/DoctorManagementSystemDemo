@@ -11,4 +11,5 @@ public interface DoctorService {
     public Boolean deleteDoctor(Long id);
     public Boolean updateDoctor(Long id,DoctorModel doctorModel);
     public List<DoctorModel> findDoctorById(Long id);
+    public List<DoctorModel> findDoctorByName(String name);
 }
