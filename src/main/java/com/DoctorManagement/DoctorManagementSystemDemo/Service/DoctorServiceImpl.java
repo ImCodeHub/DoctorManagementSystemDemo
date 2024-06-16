@@ -102,4 +102,23 @@ public class DoctorServiceImpl implements DoctorService {
         throw new DoctorNotFoundException("Doctor not found by this Id - " + id);
     }
 
+    @Override
+    public List<DoctorModel> findDoctorByName(String name) {
+        List<DoctorModel> list = new ArrayList<>();
+        Optional<Doctor> optionals = doctorRepository.findDcotorByName(name);
+        if(optionals.isPresent()){
+            Doctor doctor = optionals.get();
+            DoctorModel doctorModel = new DoctorModel();
+            doctorModel.setName(doctor.getName());
+            doctorModel.setSpecialization(doctor.getSpecialization());
+            doctorModel.setContactInfo(doctor.getContactInfo());
+
+            list.add(doctorModel);
+            return list;
+        }
+
+        
+        throw new DoctorNotFoundException("Doctor not found by this Id - " + name);
+    }
+
 }
