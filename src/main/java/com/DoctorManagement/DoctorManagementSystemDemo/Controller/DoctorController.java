@@ -8,6 +8,7 @@ import com.DoctorManagement.DoctorManagementSystemDemo.Service.DoctorService;
 
 import java.util.List;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,6 +55,12 @@ public class DoctorController {
     @GetMapping("findDoctor/{id}")
     public ResponseEntity<List<DoctorModel>> findDoctorById(@PathVariable Long id){
         List<DoctorModel> doctor = doctorService.findDoctorById(id);
+        return new ResponseEntity<>(doctor, HttpStatus.OK);
+    }
+
+    @GetMapping("findDcotorByName/{name}")
+    public ResponseEntity<List<DoctorModel>> findDocotorByName(@PathVariable("name") String name){
+        List<DoctorModel> doctor = doctorService.findDoctorByName(name);
         return new ResponseEntity<>(doctor, HttpStatus.OK);
     }
  
