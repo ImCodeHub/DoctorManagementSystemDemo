@@ -4,10 +4,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,9 +19,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.verification.VerificationMode;
 
 import com.DoctorManagement.DoctorManagementSystemDemo.Entity.Doctor;
 import com.DoctorManagement.DoctorManagementSystemDemo.Exception.GlobalException.DoctorDetailsEmptyException;
+import com.DoctorManagement.DoctorManagementSystemDemo.Exception.GlobalException.DoctorNotFoundException;
 import com.DoctorManagement.DoctorManagementSystemDemo.Model.DoctorModel;
 import com.DoctorManagement.DoctorManagementSystemDemo.Repository.DoctorRepository;
 
@@ -74,8 +80,25 @@ public class DoctorServiceImplTest {
 
     @Test
     void testDeleteDoctor() {
-        Long id = (long) 1;
-        
+        Long doctorId = 1L;
+        Doctor doctor = new Doctor();
+        doctor.setName("abhinav");
+
+        when(doctorRepository.findById(doctorId)).thenReturn(Optional.of(doctor));
+
+        Boolean result = doctorService.deleteDoctor(doctorId);
+        assertThat(result).isTrue();
+        verify(doctorRepository, times(1)).deleteById(doctorId);
+    }
+
+    @Test
+    void testDeleteDoctor_NotFound() {
+        Long doctorId = 1L;
+        when(doctorRepository.findById(doctorId)).thenReturn(Optional.empty());
+
+        assertThrows(DoctorNotFoundException.class, () -> {
+            doctorService.deleteDoctor(doctorId);
+        });
     }
 
     @Test
