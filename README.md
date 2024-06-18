@@ -1,6 +1,6 @@
 # `Doctor Management System`
 
-A Spring Boot application for managing doctors, including adding, updating, deleting, and fetching doctor details. follows all the CRUD Operations and primerily focus area of this project is [UNIT TESTING](https://github.com/ImCodeHub/DoctorManagementSystemDemo/edit/main/README.md#testing) with Junit and mockito.
+A Spring Boot application for managing doctors, including adding, updating, deleting, and fetching doctor details. follows all the CRUD Operations and primerily focus area of this project is [UNIT TESTING](https://github.com/ImCodeHub/DoctorManagementSystemDemo/blob/main/README.md#testing) with Junit and mockito.
 
 ## Table of Contents
 
