@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -64,7 +63,6 @@ public class DoctorServiceImplTest {
         doctor.setSpecialization("doctor");
         doctor.setContactInfo("ankit@gmail.com");
 
-
         when(doctorRepository.save(any(Doctor.class))).thenReturn(doctor);
 
         String result = doctorService.addDoctor(doctorModel);
@@ -103,19 +101,60 @@ public class DoctorServiceImplTest {
 
     @Test
     void testFindDoctorById() {
+        Long doctorId= 1L;
+        Doctor doctor = new Doctor();
 
+        doctor.setName("john");
+        doctor.setSpecialization("doctor");
+        doctor.setContactInfo("123654");
+
+        when(doctorRepository.findById(doctorId)).thenReturn(Optional.of(doctor));
+
+        List<DoctorModel> doctorModels = doctorService.findDoctorById(doctorId);
+        assertThat(doctorModels).hasSize(1);
+        assertThat(doctorModels.get(0).getName()).isEqualTo("john");
+    }
+
+    @Test
+    void testFindDoctorById_NotFound(){
+        Long doctorId = 1L;
+        when(doctorRepository.findById(doctorId)).thenReturn(Optional.empty());
+        assertThrows(DoctorNotFoundException.class, () ->{
+            doctorService.findDoctorById(doctorId);
+        });
     }
 
     @Test
     void testFindDoctorByName() {
+        String docName = "ankit";
 
+        Doctor doctor = new Doctor();
+        doctor.setName(docName);
+        doctor.setSpecialization("doctor");
+        doctor.setContactInfo("123456");
+
+        when(doctorRepository.findDcotorByName(docName)).thenReturn(Optional.of(doctor));
+
+        List<DoctorModel> doctorModels = doctorService.findDoctorByName(docName);
+
+        assertThat(doctorModels).hasSize(1);
+        assertThat(doctorModels.get(0).getName()).isEqualTo("ankit");
+    }
+
+    @Test
+    void testFindDoctorByName_NotFound(){
+        String docName = "ankit";
+        when(doctorRepository.findDcotorByName(docName)).thenReturn(Optional.empty());
+        assertThrows(DoctorNotFoundException.class,() ->{
+            doctorService.findDoctorByName(docName);
+        });
     }
 
     @Test
     void testGetAllDoctor() {
         List<Doctor> list = new ArrayList<>();
-        Doctor doctor1 = new Doctor("ankit","doctor","ankit@gmail.com");
-        Doctor doctor2 = new Doctor("abhi","doctor","abhi@gmail.com");
+        Doctor doctor1 = new Doctor("ankit", "doctor", "ankit@gmail.com");
+        Doctor doctor2 = new Doctor("abhi", "doctor", "abhi@gmail.com");
 
         list.add(doctor1);
         list.add(doctor2);
@@ -128,6 +167,28 @@ public class DoctorServiceImplTest {
 
     @Test
     void testUpdateDoctor() {
+        Long doctorId = 1L;
+        Doctor doctor = new Doctor();
+        doctor.setName("arun");
 
+        when(doctorRepository.findById(doctorId)).thenReturn(Optional.of(doctor));
+        when(doctorRepository.save(any(Doctor.class))).thenReturn(doctor);
+
+        Boolean result = doctorService.updateDoctor(doctorId, doctorModel);
+        assertThat(result).isTrue();
+        assertThat(doctor.getName()).isEqualTo("ankit");
+        assertThat(doctor.getSpecialization()).isEqualTo("doctor");
+        assertThat(doctor.getContactInfo()).isEqualTo("ankit@gmail.com");
+
+    }
+
+    @Test
+    void testUpdateDoctor_NotFound(){
+        Long doctorId = 1L;
+
+        when(doctorRepository.findById(doctorId)).thenReturn(Optional.empty());
+        assertThrows(DoctorNotFoundException.class, () -> {
+            doctorService.updateDoctor(doctorId, doctorModel);
+        });
     }
 }
