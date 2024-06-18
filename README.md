@@ -1,6 +1,6 @@
 # `Doctor Management System`
 
-A Spring Boot application for managing doctors, including adding, updating, deleting, and fetching doctor details. follows all the CRUD Operations and primerily focus area of this project is UNIT TESTING with Junit and mockito.
+A Spring Boot application for managing doctors, including adding, updating, deleting, and fetching doctor details. follows all the CRUD Operations and primerily focus area of this project is [UNIT TESTING](https://github.com/ImCodeHub/DoctorManagementSystemDemo/edit/main/README.md#testing) with Junit and mockito.
 
 ## Table of Contents
 
@@ -11,8 +11,6 @@ A Spring Boot application for managing doctors, including adding, updating, dele
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
 - [Testing](#testing)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
@@ -59,10 +57,53 @@ The Doctor Management System is a RESTful web service built using Spring Boot. I
    ```bash
     mvn spring-boot:run
 
+Or use [Spring Initializr](https://start.spring.io/) web interface to generate the project.
+
+- *Application Properties:*
+  Configure `application.properties` for `H2 database:
+  properties`
+  spring.datasource.url=jdbc:h2:mem:testdb
+  
+  spring.datasource.driverClassName=org.h2.Driver
+  
+  spring.datasource.username=sa
+  
+  spring.datasource.password=password
+  
+  spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+  
+  spring.h2.console.enabled=true
+
+  *add this dependency for H2 database in your [pom.xml](https://github.com/ImCodeHub/DoctorManagementSystemDemo/blob/main/pom.xml)*
+   ```xml
+   <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>runtime</scope>
+ 	</dependency>
+   ```
+
+     ```properties
+      spring.application.name=Employee
+      # H2 database
+      spring.datasource.url=jdbc:h2:mem:testdb
+      spring.datasource.driverClassName=org.h2.Driver
+      spring.datasource.username=sa
+      spring.datasource.password=password
+      spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+      spring.h2.console.enabled=true
+     ```
+
+Use this link to [http://localhost:8080/h2-console](http://localhost:8080/h2-console) to access H2 inmemory database.
+
+
 The application will start on http://localhost:8080.
 
 ## Usage
 You can use tools like [Postman](https://www.postman.com/) to interact with the API endpoints.
+
+![image](https://github.com/ImCodeHub/DoctorManagementSystemDemo/assets/98458146/50e8a2d0-faa4-4e8a-9b70-6cd4280f354b)
+
 
 ## API Endpoints
 ### Add Doctor
@@ -109,6 +150,20 @@ You can use tools like [Postman](https://www.postman.com/) to interact with the 
 - Method: GET
 - Response: 200 OK
   
+ ### API Documentation:
+   - Use `Swagger/OpenAPI` for API documentation you can follow this link http://localhost:8080/swagger-ui/index.html#/.
+   - Add the `springdoc-openapi-ui` library to the list of your project dependencies (No additional configuration is needed):
+
+      ```xml 
+         <dependency>
+               <groupId>org.springdoc</groupId>
+               <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+               <version>2.5.0</version>
+         </dependency>
+
+      ```
+      ![image](https://github.com/ImCodeHub/DoctorManagementSystemDemo/assets/98458146/e2a0e3a6-3f5a-42a4-9607-0efe57e5f96c)
+
 ## Testing
 Unit tests and integration tests are provided using JUnit and Mockito.
 
@@ -117,9 +172,13 @@ To run the tests, use the following command:
    ```bash
       mvn test
 ```
+You can use VSCode as well for spring boot project and test frame work for Junit and mockito.
+![image](https://github.com/ImCodeHub/DoctorManagementSystemDemo/assets/98458146/039a3f51-5fa4-4a74-a5fa-c7cc206579bd)
 
 ### Example Unit Test
-   To see all unit test of this project [click here](https://github.com/ImCodeHub/DoctorManagementSystemDemo/tree/main/src/test)
+   To see all `unit test` of this project [click here](https://github.com/ImCodeHub/DoctorManagementSystemDemo/tree/main/src/test)
+#### All service Unit test with Juint & Mockito framework
+
    ```java
 package com.DoctorManagement.DoctorManagementSystemDemo.Service;
 
@@ -176,5 +235,14 @@ class DoctorServiceImplTest {
 6. **API Endpoints**: Detailed documentation of the API endpoints provided by the application.
 7. **Testing**: Information about running the tests and an example of a unit test.
 8. **Contributing**: Guidelines for contributing to the project.
+
+---
+# To contact me:
+   - name: Ankit sharma
+   - mobile no: 8962780856
+   - E-mail id: ankitsharma.as420@gmail.com
+   - My [Linked In](https://www.linkedin.com/in/ankit-sharma-a6689b1a5/) Profile.
+     
+**To see My other projects** [click here](https://github.com/ImCodeHub?tab=repositories)
 
 
