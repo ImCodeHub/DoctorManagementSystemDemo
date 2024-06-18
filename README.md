@@ -64,7 +64,7 @@ The application will start on http://localhost:8080.
 ## Usage
 You can use tools like Postman to interact with the API endpoints.
 
-# API Endpoints
+## API Endpoints
 ### Add Doctor
   - URL: `/api/v1/doctor/addDoctor`
   - Method: POST
@@ -76,6 +76,92 @@ You can use tools like Postman to interact with the API endpoints.
     "contactInfo": "john.doe@example.com"
     }
   - Response: 200 OK
+    
+### Get All Doctors
+- URL: `/api/v1/doctor/allDoctors`
+- Method: GET
+- Response: 200 OK
+  
+### Delete Doctor
+- URL: `/api/v1/doctor/delete/{id}`
+- Method: DELETE
+- Response: 200 OK
 
+### Update Doctor
+- URL: `/api/v1/doctor/update/{id}`
+- Method: PUT
+- Request Body:
+   ```json
+   {
+       "name": "John Doe",
+       "specialization": "Cardiologist",
+       "contactInfo": "john.doe@example.com"
+   }
+- Response: 200 OK
+  
+### Find Doctor by ID
+- URL: `/api/v1/doctor/findDoctor/{id}`
+- Method: GET
+- Response: 200 OK
+
+### Find Doctor by Name
+- URL: `/api/v1/doctor/findDcotorByName/{name}`
+- Method: GET
+- Response: 200 OK
+  
+## Testing
+Unit tests and integration tests are provided using JUnit and Mockito.
+
+Running Tests
+To run the tests, use the following command:
+   ```bash
+      mvn test
+```
+
+### Example Unit Test
+```java
+   package com.DoctorManagement.DoctorManagementSystemDemo.Service;
+
+import com.DoctorManagement.DoctorManagementSystemDemo.Model.DoctorModel;
+import com.DoctorManagement.DoctorManagementSystemDemo.Entity.Doctor;
+import com.DoctorManagement.DoctorManagementSystemDemo.Repository.DoctorRepository;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import java.util.Optional;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
+class DoctorServiceImplTest {
+
+    @Mock
+    private DoctorRepository doctorRepository;
+
+    @InjectMocks
+    private DoctorServiceImpl doctorService;
+
+    private DoctorModel doctorModel;
+    private Doctor doctor;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+        doctorModel = new DoctorModel("ankit", "doctor", "ankit@gmail.com");
+        doctor = new Doctor();
+        doctor.setName("ankit");
+        doctor.setSpecialization("doctor");
+        doctor.setContactInfo("ankit@gmail.com");
+    }
+
+    @Test
+    void testAddDoctor_Success() {
+        when(doctorRepository.save(any(Doctor.class))).thenReturn(doctor);
+        String result = doctorService.addDoctor(doctorModel);
+        assertThat(result).isEqualTo("Doctor details has been saved.");
+    }
+}
 
 
