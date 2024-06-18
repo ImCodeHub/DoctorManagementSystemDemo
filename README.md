@@ -62,7 +62,7 @@ The Doctor Management System is a RESTful web service built using Spring Boot. I
 The application will start on http://localhost:8080.
 
 ## Usage
-You can use tools like Postman to interact with the API endpoints.
+You can use tools like [Postman](https://www.postman.com/) to interact with the API endpoints.
 
 ## API Endpoints
 ### Add Doctor
@@ -119,8 +119,9 @@ To run the tests, use the following command:
 ```
 
 ### Example Unit Test
-```java
-   package com.DoctorManagement.DoctorManagementSystemDemo.Service;
+   To see all unit test of this project [click here](https://github.com/ImCodeHub/DoctorManagementSystemDemo/tree/main/src/test)
+   ```java
+package com.DoctorManagement.DoctorManagementSystemDemo.Service;
 
 import com.DoctorManagement.DoctorManagementSystemDemo.Model.DoctorModel;
 import com.DoctorManagement.DoctorManagementSystemDemo.Entity.Doctor;
@@ -163,5 +164,17 @@ class DoctorServiceImplTest {
         assertThat(result).isEqualTo("Doctor details has been saved.");
     }
 }
+
+   ```
+### Explanation of Each Section
+
+1. **Introduction**: A brief overview of the project.
+2. **Features**: A list of the main features of the application.
+3. **Technologies Used**: Technologies and libraries used in the project.
+4. **Setup and Installation**: Instructions to set up and run the project locally.
+5. **Usage**: How to use the application (mentioning tools like Postman).
+6. **API Endpoints**: Detailed documentation of the API endpoints provided by the application.
+7. **Testing**: Information about running the tests and an example of a unit test.
+8. **Contributing**: Guidelines for contributing to the project.
 
 
