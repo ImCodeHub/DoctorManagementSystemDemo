@@ -166,7 +166,15 @@ You can use tools like [Postman](https://www.postman.com/) to interact with the 
 
 ## Testing
 Unit tests and integration tests are provided using JUnit and Mockito.
+the dependency is already available when you initialize you can find this dependency as bellow in [pom.xml](https://github.com/ImCodeHub/DoctorManagementSystemDemo/blob/main/pom.xml)
 
+```xml
+<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-test</artifactId>
+   <scope>test</scope>
+</dependency>
+```
 Running Tests
 To run the tests, use the following command:
    ```bash
