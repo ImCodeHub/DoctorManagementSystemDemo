@@ -102,7 +102,7 @@ The application will start on http://localhost:8080.
 ## Usage
 You can use tools like [Postman](https://www.postman.com/) to interact with the API endpoints.
 
-![image](https://github.com/ImCodeHub/DoctorManagementSystemDemo/assets/98458146/50e8a2d0-faa4-4e8a-9b70-6cd4280f354b)
+![image](https://github.com/ImCodeHub/DoctorManagementSystemDemo/assets/98458146/a541de75-e89c-4157-844c-5fb5429a1470)
 
 
 ## API Endpoints
